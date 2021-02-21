@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ApplicationUser>
+
+
+<div class="container">
+    <h2 class="mt-4">Registrated Users</h2>
+
+    <div class="mt-4">
+        <a class="btn btn-primary" asp-action="Create">Add New User</a>
+
+    </div>
+
+    <hr />
+    <h5 class="mt-4">Admins:</h5>
+    @foreach (var user in ViewBag.Admins)
+    {
+        <div>@user.FullName</div>
+    }
+    <hr />
+    <h5 class="mt-4">Teachers:</h5>
+    @foreach (var user in ViewBag.Teachers)
+    {
+        <div>@user.FullName</div>
+    }
+    <hr />
+    <h5 class="mt-4">Students:</h5>
+    @foreach (var user in ViewBag.Students)
+    {
+        <div>@user.FullName</div>
+    }
+    <hr />
+</div>
+
+<div class="mt-4 px-2">
+    <a asp-controller="Home" asp-action="Index">Back to Homepage</a>
+</div>

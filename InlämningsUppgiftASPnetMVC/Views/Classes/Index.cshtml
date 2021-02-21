@@ -1,0 +1,65 @@
+﻿@model IEnumerable<InlämningsUppgiftASPnetMVC.Entities.SchoolClass>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h2 class="mt-4 mb-4">Class List</h2>
+    <hr />
+    <div class="d-flex">
+        <p>
+            <a class="btn btn-primary mt-2" asp-action="Create">Create Class</a>
+        </p>
+        <p>
+            <a class="btn btn-primary m-2 " asp-controller="SchoolClassStudents" asp-action="Create">Add Students To Class</a>
+        </p>
+        <p>
+            <a class="btn btn-primary mt-2 mb-2" asp-controller="SchoolClassStudents" asp-action="Index">Class/Student Info</a>
+        </p>
+    </div>
+    
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClassName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TeacherId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Created)
+                </th>
+              
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClassName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teacher.FullName)
+                </td>
+                <td>
+                    @String.Format("{0:yyyy/MM/dd}", item.Created)
+                </td>
+               
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="mt-4 px-3">
+    <a asp-controller="Home" asp-action="Index">Back to Homepage</a>
+</div>

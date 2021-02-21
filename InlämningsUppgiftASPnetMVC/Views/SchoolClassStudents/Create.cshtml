@@ -1,0 +1,37 @@
+﻿@model InlämningsUppgiftASPnetMVC.Entities.SchoolClassStudent
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <h2 class="mt-4 mb-4">Add a student to class</h2>
+
+    
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mt-4">
+                    @Html.DropDownListFor(m => m.StudentId, new SelectList(ViewBag.Students, "Id", "FullName"), "Select a Student")
+                </div>
+                <div class="form-group mt-4">
+                    <label asp-for="SchoolClassId" class="control-label"></label>
+                    <select asp-for="SchoolClassId" class="form-control" asp-items="ViewBag.SchoolClassId"></select>
+                </div>
+                <div class="form-group mt-4">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="mt-2 px-2">
+    <a asp-controller="Classes" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
